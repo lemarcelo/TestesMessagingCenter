@@ -13,16 +13,18 @@ namespace TesteMessagingCenter
     [DesignTimeVisible(false)]
     public partial class MainPage : ContentPage
     {
+        readonly ResultView ResultPage = new ResultView();
+
         public MainPage()
         {
             InitializeComponent();
+
         }
 
         private void EnviarMensagem(object sender, EventArgs e)
         {
 
-            ResultView destinoMsg = new ResultView();
-            MessagingCenter.Send<ResultView>( destinoMsg, "jose");
+            MessagingCenter.Send<ResultView>( ResultPage, "jose");
         }
 
         private void GoPaginaResult(object sender, EventArgs e)
@@ -33,20 +35,18 @@ namespace TesteMessagingCenter
 
         private void GoPaginaResultComRegistro(object sender, EventArgs e)
         {
-            ResultView ResultPage = new ResultView(true);
             App.Current.MainPage.Navigation.PushAsync(ResultPage);
             MessagingCenter.Send<ResultView>(ResultPage, "jose");
         }
 
         private void RemoverRegistro(object sender, EventArgs e)
         {
-            ResultView ResultPage = new ResultView();
             MessagingCenter.Unsubscribe<ResultView>(ResultPage, "jose");
         }
 
         private void SomenteRegistro(object sender, EventArgs e)
         {
-            ResultView ResultPage = new ResultView(true);
+            ResultPage.Registro();
         }
     }
 }

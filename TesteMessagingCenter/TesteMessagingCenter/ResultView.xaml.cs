@@ -16,12 +16,6 @@ namespace TesteMessagingCenter
         {
             InitializeComponent();
         }
-        public ResultView(bool registro)
-        {
-            InitializeComponent();
-            Registro();
-        }
-
         private void Voltar(object sender, EventArgs e)
         {
             App.Current.MainPage.Navigation.PopAsync();
