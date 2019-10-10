@@ -8,8 +8,11 @@
 
     <StackLayout>
         <!-- Place new controls here -->
-        <Button Text="Chamar Pagina 2" Clicked="GoPagina2" />
-        <Button Text="Assinar Mensagem" Clicked="EnviarMensagem" />
+        <Button Text="Pagina Result sem Registro e Envio" Clicked="GoPaginaResult" />
+        <Button Text="Pagina Result Com Registro e Envio" Clicked="GoPaginaResultComRegistro" />
+        <Button Text="Somente Envio" Clicked="EnviarMensagem" />
+        <Button Text="Somente Registro" Clicked="SomenteRegistro" />
+        <Button Text="Remover Registro" Clicked="RemoverRegistro" />
     </StackLayout>
 
 </ContentPage>

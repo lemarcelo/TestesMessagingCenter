@@ -20,15 +20,33 @@ namespace TesteMessagingCenter
 
         private void EnviarMensagem(object sender, EventArgs e)
         {
+
             ResultView destinoMsg = new ResultView();
             MessagingCenter.Send<ResultView>( destinoMsg, "jose");
         }
 
-        private void GoPagina2(object sender, EventArgs e)
+        private void GoPaginaResult(object sender, EventArgs e)
         {
-            ResultView Pagina = new ResultView();
-            App.Current.MainPage.Navigation.PushAsync(Pagina);
-            Pagina.Registro();
+            ResultView ResultPage = new ResultView();
+            App.Current.MainPage.Navigation.PushAsync(ResultPage);
+        }
+
+        private void GoPaginaResultComRegistro(object sender, EventArgs e)
+        {
+            ResultView ResultPage = new ResultView(true);
+            App.Current.MainPage.Navigation.PushAsync(ResultPage);
+            MessagingCenter.Send<ResultView>(ResultPage, "jose");
+        }
+
+        private void RemoverRegistro(object sender, EventArgs e)
+        {
+            ResultView ResultPage = new ResultView();
+            MessagingCenter.Unsubscribe<ResultView>(ResultPage, "jose");
+        }
+
+        private void SomenteRegistro(object sender, EventArgs e)
+        {
+            ResultView ResultPage = new ResultView(true);
         }
     }
 }

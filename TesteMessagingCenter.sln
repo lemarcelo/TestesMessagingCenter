@@ -9,7 +9,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TesteMessagingCenter.Androi
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TesteMessagingCenter.iOS", "TesteMessagingCenter\TesteMessagingCenter.iOS\TesteMessagingCenter.iOS.csproj", "{72B19B36-77AB-42E6-8D80-11FA57DDAB5D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TesteMessagingCenter", "TesteMessagingCenter\TesteMessagingCenter\TesteMessagingCenter.csproj", "{2CBEE74A-B404-4577-9D45-619D3E3933DC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TesteMessagingCenter", "TesteMessagingCenter\TesteMessagingCenter\TesteMessagingCenter.csproj", "{2CBEE74A-B404-4577-9D45-619D3E3933DC}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
