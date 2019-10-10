@@ -50,5 +50,10 @@ namespace TesteMessagingCenter
                 this.DisplayAlert("Alerta de Registro", "Mensage jose com registro Enviada","Ok");
             });
         }
+
+        private void EnviarMensagem(object sender, EventArgs e)
+        {
+            MessagingCenter.Send<ResultView>(this, "jose");
+        }
     }
 }

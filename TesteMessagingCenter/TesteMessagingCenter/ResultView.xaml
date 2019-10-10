@@ -10,6 +10,7 @@
             <Button Text="Voltar" Clicked="Voltar"/>
             <Button Text="Apagar Registro" Clicked="ApagarRegistro"/>
             <Button Text="Registrar Mensagem" Clicked="RegistrarMensagem" />
+            <Button Text="Somente Envio" Clicked="EnviarMensagem" />
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
