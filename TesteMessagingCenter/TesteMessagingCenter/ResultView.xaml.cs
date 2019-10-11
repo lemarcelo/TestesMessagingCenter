@@ -20,6 +20,24 @@ namespace TesteMessagingCenter
         {
             App.Current.MainPage.Navigation.PopAsync();
         }
+
+        private void RegistrarMensagem(object sender, EventArgs e)
+        {
+            Registro();
+        }
+
+        private void EnviarMensagem(object sender, EventArgs e)
+        {
+            MessagingCenter.Send<ResultView>(this, "jose");
+        }
+
+        private void GoPaginaMainComRegistro(object sender, EventArgs e)
+        {
+            Registro();
+            this.Navigation.PopAsync();
+            MessagingCenter.Send<ResultView>(this, "jose");
+            MessagingCenter.Unsubscribe<ResultView>(this, "jose");
+        }
         //Remoção do registro da mensagem
         /*Tem como objetivo remover(Unsubscribe) o registro da Mensagem(<ResultView>, "jose"), 
          * importante ressaltar que o tipo do destino da mensagem(<ResultView>) também é chave 
@@ -29,10 +47,7 @@ namespace TesteMessagingCenter
             MessagingCenter.Unsubscribe<ResultView>(this, "jose");
         }
 
-        private void RegistrarMensagem(object sender, EventArgs e)
-        {
-            Registro();
-        }
+        #region Registro
         //Registro da Mensagem
         /*Tem como objecivo declarar qual será a classe de 
          * destino(<ResultView>) e qual será a chave/mensagem ("jose") e qual 
@@ -41,13 +56,9 @@ namespace TesteMessagingCenter
         {
             MessagingCenter.Subscribe<ResultView>(this, "jose", message =>
             {
-                this.DisplayAlert("Alerta de Registro", "Mensage jose com registro Enviada","Ok");
+                this.DisplayAlert("Alerta de Registro", "Mensage jose com registro Enviada", "Ok");
             });
         }
-
-        private void EnviarMensagem(object sender, EventArgs e)
-        {
-            MessagingCenter.Send<ResultView>(this, "jose");
-        }
+        #endregion
     }
 }

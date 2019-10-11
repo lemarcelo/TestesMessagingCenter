@@ -6,13 +6,13 @@
              mc:Ignorable="d"
              x:Class="TesteMessagingCenter.MainPage">
 
-    <StackLayout>
+    <StackLayout Spacing="15" HorizontalOptions="Center">
         <!-- Place new controls here -->
-        <Button Text="Pagina Result sem Registro e Envio" Clicked="GoPaginaResult" />
-        <Button Text="Somente Registro" Clicked="SomenteRegistro" />
-        <Button Text="Somente Envio" Clicked="EnviarMensagem" />
-        <Button Text="Pagina Result Com Registro e Envio" Clicked="GoPaginaResultComRegistro" />
-        <Button Text="Remover Registro" Clicked="RemoverRegistro" BackgroundColor="DarkRed"/>
+        <Button Text="Pagina Result" Clicked="GoPaginaResult" BackgroundColor="BlueViolet" />
+        <Button Text="Somente Registro" Clicked="SomenteRegistro" BackgroundColor="YellowGreen" />
+        <Button Text="Somente Envio" Clicked="EnviarMensagem" BackgroundColor="LightGreen" />
+        <Button Text="Pagina Result Com Registro e Envio" Clicked="GoPaginaResultComRegistro" BackgroundColor="Green" />
+        <Button Text="Remover Registro" Clicked="RemoverRegistro" BackgroundColor="Red" />
     </StackLayout>
 
 </ContentPage>
