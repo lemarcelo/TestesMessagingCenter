@@ -12,9 +12,22 @@ namespace TesteMessagingCenter
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class ResultView : ContentPage
     {
+        NotifyBase Notify = new NotifyBase();
+        private string _Texto;
+        public string Texto
+        {
+            get { return _Texto; }
+            set
+            {
+                _Texto = value;
+                Notify.NotifyPropertyChanged("Texto");
+            }
+        }
+
         public ResultView()
         {
             InitializeComponent();
+            BindingContext = this;
         }
         private void Voltar(object sender, EventArgs e)
         {
@@ -28,37 +41,59 @@ namespace TesteMessagingCenter
 
         private void EnviarMensagem(object sender, EventArgs e)
         {
-            MessagingCenter.Send<ResultView>(this, "jose");
+            MessagingCenter.Send<ResultView>(this, "DisplayAlert");
         }
 
         private void GoPaginaMainComRegistro(object sender, EventArgs e)
         {
             Registro();
             this.Navigation.PopAsync();
-            MessagingCenter.Send<ResultView>(this, "jose");
-            MessagingCenter.Unsubscribe<ResultView>(this, "jose");
+            MessagingCenter.Send<ResultView>(this, "DisplayAlert");
+            MessagingCenter.Unsubscribe<ResultView>(this, "DisplayAlert");
         }
         //Remoção do registro da mensagem
-        /*Tem como objetivo remover(Unsubscribe) o registro da Mensagem(<ResultView>, "jose"), 
+        /*Tem como objetivo remover(Unsubscribe) o registro da Mensagem(<ResultView>, "DisplayAlert"), 
          * importante ressaltar que o tipo do destino da mensagem(<ResultView>) também é chave 
          * para que o MessagingCenter a identifique, para neste caso remove-la*/
         private void ApagarRegistro(object sender, EventArgs e)
         {
-            MessagingCenter.Unsubscribe<ResultView>(this, "jose");
+            MessagingCenter.Unsubscribe<ResultView>(this, "DisplayAlert");
         }
 
         #region Registro
         //Registro da Mensagem
         /*Tem como objecivo declarar qual será a classe de 
-         * destino(<ResultView>) e qual será a chave/mensagem ("jose") e qual 
+         * destino(<ResultView>) e qual será a chave/mensagem ("DisplayAlert") e qual 
          * será a ação, caso exista(message => DisplayAlert)*/
         public void Registro()
         {
-            MessagingCenter.Subscribe<ResultView>(this, "jose", message =>
+            MessagingCenter.Subscribe<ResultView>(this, "DisplayAlert", message =>
             {
-                this.DisplayAlert("Alerta de Registro", "Mensage jose com registro Enviada", "Ok");
+                this.DisplayAlert("Alerta de Registro", "Mensage DisplayAlert com registro Enviada", "Ok");
             });
         }
         #endregion
+        public void RegistroComParametro()
+        {
+            MessagingCenter.Subscribe<ResultView, string>(this, "Texto", (message, args) =>
+            {
+                this.DisplayAlert("Alerta de Registro", args, "Ok");
+            });
+        }
+
+        private void VoltarTexto(object sender, EventArgs e)
+        {
+            if (!string.IsNullOrEmpty(Texto))
+            {
+                this.RegistroComParametro();
+                MessagingCenter.Send<ResultView, string>(this, "Texto", Texto);
+                MessagingCenter.Unsubscribe<ResultView, string>(this, "Texto");
+                App.Current.MainPage.Navigation.PushAsync(new MainPage());
+            }
+            else
+            {
+                this.DisplayAlert("Dados incorretos", "Digite algo na caixa de texto", "Ok");
+            }
+        }
     }
 }

@@ -5,15 +5,17 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
              x:Class="TesteMessagingCenter.ResultView">
-    <ContentPage.Content>
-        <StackLayout Spacing="15" HorizontalOptions="Center">
-            <Button Text="Voltar" Clicked="Voltar" BackgroundColor="BlueViolet" />
-            <Button Text="Somente Registro" Clicked="RegistrarMensagem" BackgroundColor="YellowGreen" />
-            <Button Text="Somente Envio" Clicked="EnviarMensagem" BackgroundColor="LightGreen" />
-            <Button Text="Voltar com Registro e Envio" Clicked="GoPaginaMainComRegistro" BackgroundColor="Green"/>
-            <Button Text="Apagar Registro" Clicked="ApagarRegistro" BackgroundColor="Red" />
-
+    
+    <StackLayout Spacing="15" HorizontalOptions="Center">
+        <Button Text="Voltar" Clicked="Voltar" BackgroundColor="BlueViolet" />
+        <Button Text="Somente Subscribe" Clicked="RegistrarMensagem" BackgroundColor="YellowGreen" />
+        <Button Text="Somente Send" Clicked="EnviarMensagem" BackgroundColor="LightGreen" />
+        <Button Text="Somente Unsubscribe" Clicked="ApagarRegistro" BackgroundColor="Red" />
+        <BoxView BackgroundColor="Transparent" HeightRequest="20" />
+        <Button Text="Voltar Com Subscribe, Send e Ubsubscribe" Clicked="GoPaginaMainComRegistro" BackgroundColor="Green"/>
+        <BoxView BackgroundColor="Transparent" HeightRequest="20" />
+        <Entry Text="{Binding Texto}" Placeholder="Texto da Mensagem" />
+        <Button Text="Voltar com Texto" Clicked="VoltarTexto" BackgroundColor="Gray" />
 
         </StackLayout>
-    </ContentPage.Content>
-</ContentPage>
+    </ContentPage>

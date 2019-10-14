@@ -19,10 +19,23 @@ namespace TesteMessagingCenter
         */    
         readonly ResultView ResultPage = new ResultView();
 
+        NotifyBase notify = new NotifyBase();
+        private string _Texto;
+        public string Texto
+        {
+            get { return _Texto; }
+            set
+            {
+                _Texto = value;
+                notify.NotifyPropertyChanged("Texto");
+            }
+        }
+
+
         public MainPage()
         {
             InitializeComponent();
-
+            BindingContext = this;
         }
 
         private void GoPaginaResult(object sender, EventArgs e)
@@ -39,21 +52,35 @@ namespace TesteMessagingCenter
         private void EnviarMensagem(object sender, EventArgs e)
         {
 
-            MessagingCenter.Send<ResultView>( ResultPage, "jose");
+            MessagingCenter.Send<ResultView>( ResultPage, "DisplayAlert");
         }
 
         private void GoPaginaResultComRegistro(object sender, EventArgs e)
         {
             ResultPage.Registro();
-            App.Current.MainPage.Navigation.PushAsync(ResultPage);
-            MessagingCenter.Send<ResultView>(ResultPage, "jose");
-            MessagingCenter.Unsubscribe<ResultView>(ResultPage, "jose");
+            MessagingCenter.Send<ResultView>(ResultPage, "DisplayAlert");
+            MessagingCenter.Unsubscribe<ResultView>(ResultPage, "DisplayAlert");
+            this.Navigation.PushAsync(ResultPage);
         }
 
         private void RemoverRegistro(object sender, EventArgs e)
         {
-            MessagingCenter.Unsubscribe<ResultView>(ResultPage, "jose");
+            MessagingCenter.Unsubscribe<ResultView>(ResultPage, "DisplayAlert");
         }
 
+        private void GoPaginaResultTexto(object sender, EventArgs e)
+        {
+            if (!string.IsNullOrEmpty(Texto))
+            {
+                ResultPage.RegistroComParametro();
+                MessagingCenter.Send<ResultView, string>(ResultPage, "Texto", Texto);
+                MessagingCenter.Unsubscribe<ResultView, string>(ResultPage, "Texto");
+                this.Navigation.PushAsync(ResultPage);
+            }
+            else
+            {
+                this.DisplayAlert("Dados incorretos", "Digite algo na caixa de texto", "Ok");
+            }
+        }
     }
 }

@@ -9,10 +9,14 @@
     <StackLayout Spacing="15" HorizontalOptions="Center">
         <!-- Place new controls here -->
         <Button Text="Pagina Result" Clicked="GoPaginaResult" BackgroundColor="BlueViolet" />
-        <Button Text="Somente Registro" Clicked="SomenteRegistro" BackgroundColor="YellowGreen" />
-        <Button Text="Somente Envio" Clicked="EnviarMensagem" BackgroundColor="LightGreen" />
-        <Button Text="Pagina Result Com Registro e Envio" Clicked="GoPaginaResultComRegistro" BackgroundColor="Green" />
-        <Button Text="Remover Registro" Clicked="RemoverRegistro" BackgroundColor="Red" />
+        <Button Text="Somente Subscribe" Clicked="SomenteRegistro" BackgroundColor="YellowGreen" />
+        <Button Text="Somente Send" Clicked="EnviarMensagem" BackgroundColor="LightGreen" />
+        <Button Text="Somente Unsubscribe" Clicked="RemoverRegistro" BackgroundColor="Red" />
+        <BoxView BackgroundColor="Transparent" HeightRequest="20" />
+        <Button Text="Pagina Result Com Subscribe, Send e Ubsubscribe" Clicked="GoPaginaResultComRegistro" BackgroundColor="Green" />
+        <BoxView BackgroundColor="Transparent" HeightRequest="20" />
+        <Entry Text="{Binding Texto}" Placeholder="Texto da Mensagem" />
+        <Button Text="Pagina Result com Texto" Clicked="GoPaginaResultTexto" BackgroundColor="Gray" />
     </StackLayout>
 
 </ContentPage>
