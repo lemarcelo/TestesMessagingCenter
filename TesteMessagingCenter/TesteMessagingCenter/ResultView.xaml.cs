@@ -85,8 +85,8 @@ namespace TesteMessagingCenter
         {
             if (!string.IsNullOrEmpty(Texto))
             {
-                this.RegistroComParametro();
-                MessagingCenter.Send<ResultView, string>(this, "Texto", Texto);
+                RegistroComParametro();
+                MessagingCenter.Send(this, "Texto", Texto);
                 MessagingCenter.Unsubscribe<ResultView, string>(this, "Texto");
                 App.Current.MainPage.Navigation.PushAsync(new MainPage());
             }

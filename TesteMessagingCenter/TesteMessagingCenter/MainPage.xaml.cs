@@ -73,7 +73,7 @@ namespace TesteMessagingCenter
             if (!string.IsNullOrEmpty(Texto))
             {
                 ResultPage.RegistroComParametro();
-                MessagingCenter.Send<ResultView, string>(ResultPage, "Texto", Texto);
+                MessagingCenter.Send(ResultPage, "Texto", Texto);
                 MessagingCenter.Unsubscribe<ResultView, string>(ResultPage, "Texto");
                 this.Navigation.PushAsync(ResultPage);
             }
