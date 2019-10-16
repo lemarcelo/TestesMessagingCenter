@@ -49,13 +49,17 @@ namespace TesteMessagingCenter
             Registro();
             this.Navigation.PopAsync();
             MessagingCenter.Send<ResultView>(this, "DisplayAlert");
-            MessagingCenter.Unsubscribe<ResultView>(this, "DisplayAlert");
+            CancelarRegistroSemParametro();
         }
         //Remoção do registro da mensagem
         /*Tem como objetivo remover(Unsubscribe) o registro da Mensagem(<ResultView>, "DisplayAlert"), 
          * importante ressaltar que o tipo do destino da mensagem(<ResultView>) também é chave 
          * para que o MessagingCenter a identifique, para neste caso remove-la*/
         private void ApagarRegistro(object sender, EventArgs e)
+        {
+            CancelarRegistroSemParametro();
+        }
+        public void CancelarRegistroSemParametro()
         {
             MessagingCenter.Unsubscribe<ResultView>(this, "DisplayAlert");
         }
@@ -80,6 +84,11 @@ namespace TesteMessagingCenter
                 this.DisplayAlert("Alerta de Registro", args, "Ok");
             });
         }
+        public void CancelarRegistroComParametro()
+        {
+            MessagingCenter.Unsubscribe<ResultView, string>(this, "Texto");
+
+        }
 
         private void VoltarTexto(object sender, EventArgs e)
         {
@@ -87,7 +96,7 @@ namespace TesteMessagingCenter
             {
                 RegistroComParametro();
                 MessagingCenter.Send(this, "Texto", Texto);
-                MessagingCenter.Unsubscribe<ResultView, string>(this, "Texto");
+                CancelarRegistroComParametro();
                 App.Current.MainPage.Navigation.PushAsync(new MainPage());
             }
             else

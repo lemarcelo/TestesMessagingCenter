@@ -16,7 +16,7 @@ namespace TesteMessagingCenter
         /*Correção dos erros de: Duplicidade no Registros de mensagem e Falha na Remoção da Mensagem(Unsubscribe).
          * Motivo dos erros: Multiplas instâncias de um mêsmo objeto que deveria ser estático/singleton por ter no 
          * construtor da classe de origem a criação de um registro de mensagem(que duplicava a cada instância).
-        */    
+        */
         readonly ResultView ResultPage = new ResultView();
 
         NotifyBase notify = new NotifyBase();
@@ -30,7 +30,6 @@ namespace TesteMessagingCenter
                 notify.NotifyPropertyChanged("Texto");
             }
         }
-
 
         public MainPage()
         {
@@ -59,7 +58,7 @@ namespace TesteMessagingCenter
         {
             ResultPage.Registro();
             MessagingCenter.Send<ResultView>(ResultPage, "DisplayAlert");
-            MessagingCenter.Unsubscribe<ResultView>(ResultPage, "DisplayAlert");
+            ResultPage.CancelarRegistroSemParametro();
             this.Navigation.PushAsync(ResultPage);
         }
 
@@ -74,7 +73,7 @@ namespace TesteMessagingCenter
             {
                 ResultPage.RegistroComParametro();
                 MessagingCenter.Send(ResultPage, "Texto", Texto);
-                MessagingCenter.Unsubscribe<ResultView, string>(ResultPage, "Texto");
+                MessagingCenter.Unsubscribe<ResultView, string>(this, "Texto");
                 this.Navigation.PushAsync(ResultPage);
             }
             else
