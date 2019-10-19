@@ -4,19 +4,20 @@
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
-             x:Class="TesteMessagingCenter.MainPage">
+             x:Class="TesteMessagingCenter.MainPage"
+             Title="First Page">
 
     <StackLayout Spacing="15" HorizontalOptions="Center">
         <!-- Place new controls here -->
-        <Button Text="Pagina Result" Clicked="GoPaginaResult" BackgroundColor="BlueViolet" />
-        <Button Text="Somente Subscribe" Clicked="SomenteRegistro" BackgroundColor="YellowGreen" />
-        <Button Text="Somente Send" Clicked="EnviarMensagem" BackgroundColor="LightGreen" />
-        <Button Text="Somente Unsubscribe" Clicked="RemoverRegistro" BackgroundColor="Red" />
-        <BoxView BackgroundColor="Transparent" HeightRequest="20" />
-        <Button Text="Pagina Result Com Subscribe, Send e Ubsubscribe" Clicked="GoPaginaResultComRegistro" BackgroundColor="Green" />
-        <BoxView BackgroundColor="Transparent" HeightRequest="20" />
-        <Entry Text="{Binding Texto}" Placeholder="Texto da Mensagem" />
-        <Button Text="Pagina Result com Texto" Clicked="GoPaginaResultTexto" BackgroundColor="Gray" />
+        <Button Text="Next Page" Clicked="SecondPage" BackgroundColor="BlueViolet" />
+        <Button Text="Just Subscribe" Clicked="JustRegister" BackgroundColor="YellowGreen" />
+        <Button Text="Just Send" Clicked="SendMessage" BackgroundColor="LightGreen" />
+        <Button Text="Just Unsubscribe" Clicked="Unsubscribe" BackgroundColor="Red" />
+        
+        <Button Margin="0,10,0,10" Text="Pagina Result Com Subscribe, Send e Ubsubscribe" Clicked="SecondPageWithMessaging" BackgroundColor="Green" />
+        
+        <Entry Text="{Binding Text}" Placeholder="Alert Text" />
+        <Button Text="Next page with Messaging" Clicked="SecondPageWithMessagingParam" BackgroundColor="Gray" />
     </StackLayout>
 
 </ContentPage>

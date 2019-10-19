@@ -119,7 +119,7 @@ namespace TesteMessagingCenter
             }
             else
             {
-                this.DisplayAlert("Ops", "Type something to use that's button", "Ok");
+                this.DisplayAlert("Ops", "Type something", "Ok");
             }
         }
     }

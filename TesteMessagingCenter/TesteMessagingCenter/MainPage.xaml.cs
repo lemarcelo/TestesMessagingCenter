@@ -20,13 +20,13 @@ namespace TesteMessagingCenter
         readonly ResultView ResultPage = new ResultView();
 
         NotifyBase notify = new NotifyBase();
-        private string _Texto;
-        public string Texto
+        private string _Text;
+        public string Text
         {
-            get { return _Texto; }
+            get { return _Text; }
             set
             {
-                _Texto = value;
+                _Text = value;
                 notify.NotifyPropertyChanged("Text");
             }
         }
@@ -37,46 +37,45 @@ namespace TesteMessagingCenter
             BindingContext = this;
         }
 
-        private void GoPaginaResult(object sender, EventArgs e)
+        private void SecondPage(object sender, EventArgs e)
         {
             ResultView ResultPage = new ResultView();
             App.Current.MainPage.Navigation.PushAsync(ResultPage);
         }
 
-        private void SomenteRegistro(object sender, EventArgs e)
+        private void JustRegister(object sender, EventArgs e)
         {
-            ResultPage.SubscribeUnsubscribe();
+            ResultPage.Subscribe();
         }
 
-        private void EnviarMensagem(object sender, EventArgs e)
+        private void SendMessage(object sender, EventArgs e)
         {
 
             MessagingCenter.Send<ResultView>( ResultPage, "DisplayAlert");
         }
 
-        private void GoPaginaResultComRegistro(object sender, EventArgs e)
+        private void SecondPageWithMessaging(object sender, EventArgs e)
         {
             ResultPage.SubscribeUnsubscribe();
             this.Navigation.PushAsync(ResultPage);
             MessagingCenter.Send(ResultPage, "DisplayAlert");
         }
-
-        private void RemoverRegistro(object sender, EventArgs e)
+        private void Unsubscribe(object sender, EventArgs e)
         {
             MessagingCenter.Unsubscribe<ResultView>(ResultPage, "DisplayAlert");
         }
 
-        private void GoPaginaResultTexto(object sender, EventArgs e)
+        private void SecondPageWithMessagingParam(object sender, EventArgs e)
         {
-            if (!string.IsNullOrEmpty(Texto))
+            if (!string.IsNullOrEmpty(Text))
             {
                 ResultPage.SubscribeWithParam();
                 this.Navigation.PushAsync(ResultPage);
-                MessagingCenter.Send(ResultPage, "Text", Texto);
+                MessagingCenter.Send(ResultPage, "Text", Text);
             }
             else
             {
-                this.DisplayAlert("Dados incorretos", "Digite algo na caixa de texto", "Ok");
+                this.DisplayAlert("Ops", "Type something", "Ok");
             }
         }
     }
