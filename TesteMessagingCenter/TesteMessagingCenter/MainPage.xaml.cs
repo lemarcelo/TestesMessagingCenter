@@ -27,7 +27,7 @@ namespace TesteMessagingCenter
             set
             {
                 _Texto = value;
-                notify.NotifyPropertyChanged("Texto");
+                notify.NotifyPropertyChanged("Text");
             }
         }
 
@@ -45,7 +45,7 @@ namespace TesteMessagingCenter
 
         private void SomenteRegistro(object sender, EventArgs e)
         {
-            ResultPage.Registro();
+            ResultPage.SubscribeUnsubscribe();
         }
 
         private void EnviarMensagem(object sender, EventArgs e)
@@ -56,10 +56,9 @@ namespace TesteMessagingCenter
 
         private void GoPaginaResultComRegistro(object sender, EventArgs e)
         {
-            ResultPage.Registro();
-            MessagingCenter.Send<ResultView>(ResultPage, "DisplayAlert");
-            ResultPage.CancelarRegistroSemParametro();
+            ResultPage.SubscribeUnsubscribe();
             this.Navigation.PushAsync(ResultPage);
+            MessagingCenter.Send(ResultPage, "DisplayAlert");
         }
 
         private void RemoverRegistro(object sender, EventArgs e)
@@ -71,10 +70,9 @@ namespace TesteMessagingCenter
         {
             if (!string.IsNullOrEmpty(Texto))
             {
-                ResultPage.RegistroComParametro();
-                MessagingCenter.Send(ResultPage, "Texto", Texto);
-                MessagingCenter.Unsubscribe<ResultView, string>(this, "Texto");
+                ResultPage.SubscribeWithParam();
                 this.Navigation.PushAsync(ResultPage);
+                MessagingCenter.Send(ResultPage, "Text", Texto);
             }
             else
             {

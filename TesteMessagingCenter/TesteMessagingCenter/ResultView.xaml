@@ -7,15 +7,15 @@
              x:Class="TesteMessagingCenter.ResultView">
     
     <StackLayout Spacing="15" HorizontalOptions="Center">
-        <Button Text="Voltar" Clicked="Voltar" BackgroundColor="BlueViolet" />
-        <Button Text="Somente Subscribe" Clicked="RegistrarMensagem" BackgroundColor="YellowGreen" />
-        <Button Text="Somente Send" Clicked="EnviarMensagem" BackgroundColor="LightGreen" />
-        <Button Text="Somente Unsubscribe" Clicked="ApagarRegistro" BackgroundColor="Red" />
-        <BoxView BackgroundColor="Transparent" HeightRequest="20" />
-        <Button Text="Voltar Com Subscribe, Send e Ubsubscribe" Clicked="GoPaginaMainComRegistro" BackgroundColor="Green"/>
-        <BoxView BackgroundColor="Transparent" HeightRequest="20" />
-        <Entry Text="{Binding Texto}" Placeholder="Texto da Mensagem" />
-        <Button Text="Voltar com Texto" Clicked="VoltarTexto" BackgroundColor="Gray" />
+        <Button Text="Back" Clicked="BackPage" BackgroundColor="BlueViolet" />
+        <Button Text="Just Subscribe" Clicked="SubscribeMessage" BackgroundColor="YellowGreen" />
+        <Button Text="Just Send" Clicked="SendMessage" BackgroundColor="LightGreen" />
+        <Button Text="Just Unsubscribe" Clicked="Unsubscribe" BackgroundColor="Red" />
+        
+        <Button Margin="0,10,0,10" Text="Back with Subscribe, Send and Ubsubscribe" Clicked="BackWithMessaging" BackgroundColor="Green"/>
+
+        <Entry Text="{Binding Text}" Placeholder="Display text" />
+        <Button Text="Back with text" Clicked="BackWithParam" BackgroundColor="Gray" />
 
         </StackLayout>
     </ContentPage>
