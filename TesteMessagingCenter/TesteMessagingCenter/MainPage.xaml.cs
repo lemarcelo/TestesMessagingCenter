@@ -17,7 +17,7 @@ namespace TesteMessagingCenter
          * Motivo dos erros: Multiplas instâncias de um mêsmo objeto que deveria ser estático/singleton por ter no 
          * construtor da classe de origem a criação de um registro de mensagem(que duplicava a cada instância).
         */
-        readonly ResultView ResultPage = new ResultView();
+        ResultView ResultPage = new ResultView();
 
         NotifyBase notify = new NotifyBase();
         private string _Text;
@@ -43,15 +43,17 @@ namespace TesteMessagingCenter
             App.Current.MainPage.Navigation.PushAsync(ResultPage);
         }
 
-        private void JustRegister(object sender, EventArgs e)
+        private void MessagingHere(object sender, EventArgs e)
         {
-            ResultPage.Subscribe();
-        }
-
-        private void SendMessage(object sender, EventArgs e)
-        {
-
-            MessagingCenter.Send<ResultView>( ResultPage, "DisplayAlert");
+            MessagingCenter.Subscribe<MainPage>(this, "DisplayAlert", (message) =>
+            {
+                Device.BeginInvokeOnMainThread(async () =>
+                {
+                    await DisplayAlert("Subscribe Alert", "Messaging Works", "Ok");
+                    MessagingCenter.Unsubscribe<MainPage>(this, "DisplayAlert");
+                });
+            });
+            MessagingCenter.Send(this, "DisplayAlert");
         }
 
         private void SecondPageWithMessaging(object sender, EventArgs e)

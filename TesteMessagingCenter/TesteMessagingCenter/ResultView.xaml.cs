@@ -39,8 +39,8 @@ namespace TesteMessagingCenter
         {
             Subscribe();
         }
-
-        private void SendMessage(object sender, EventArgs e)
+         
+        public void SendMessage(object sender, EventArgs e)
         {
             MessagingCenter.Send<ResultView>(this, "DisplayAlert");
         }
@@ -88,6 +88,10 @@ namespace TesteMessagingCenter
                 });
             });
         }
+        public void Send()
+        {
+            MessagingCenter.Send<ResultView>(this, "DisplayAlert");
+        }
         public void SubscribeWithParam()
         {
             MessagingCenter.Subscribe<ResultView, string>(this, "Text", (message, args) =>
@@ -115,7 +119,7 @@ namespace TesteMessagingCenter
                 SubscribeWithParam();
                 MessagingCenter.Send(this, "Text", Text);
                 UnsubscribeParam();
-                App.Current.MainPage.Navigation.PushAsync(new MainPage());
+                App.Current.MainPage.Navigation.PopAsync(true);
             }
             else
             {
